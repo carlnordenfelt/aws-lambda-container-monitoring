@@ -4,7 +4,7 @@ Monitors number of active AWS Lambda containers and reports to CloudWatch as a c
 ##Installation
 * Create IAM Role (see IAM.policy)
 * Install and package zip file with source code
-    * npm install && npm package
+    * `npm install` && `npm run package`
 * Create Lambda function 
     * Runtime: nodejs4.3
     * Timeout: 300
@@ -14,10 +14,10 @@ Monitors number of active AWS Lambda containers and reports to CloudWatch as a c
     * Setup 1 minute scheduling
     
 ##Options
+In src/index.js:
 
     var options = {
         cloudWatchMetricNamespace: 'Lambda/ContainerMonitoring', // CloudWatch metric namespace
-        lambdaFunctionPrefix: '/aws/lambda/', // CloudWatch Logs filter prefix
         metricName: 'ActiveContainers', // CloudWatch metric name
         activeLambdaOffsetMillis: 10 * 60 * 1000 // Time in millis that a container is considerd active
     };
