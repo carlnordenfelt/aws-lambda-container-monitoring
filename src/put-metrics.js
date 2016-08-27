@@ -8,7 +8,7 @@ module.exports = function (options, lambdaStatistics, callback) {
         var params = {
             MetricData: [
                 {
-                    MetricName: 'ActiveContainers',
+                    MetricName: options.metricName,
                     Dimensions: [
                         {
                             Name: 'LambdaFunction',

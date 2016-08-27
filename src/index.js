@@ -5,17 +5,13 @@ var putMetrics = require('./put-metrics');
 
 var options = {
     cloudWatchMetricNamespace: 'Lambda/ContainerMonitoring',
-    lambdaFunctionPrefix: '/aws/lambda/'
+    lambdaFunctionPrefix: '/aws/lambda/',
+    metricName: 'ActiveContainers',
+    activeLambdaOffsetMillis: 10 * 60 * 1000
 };
-var LOG_STREAM_ACTIVE_TIME_OFFSET_MILLIS = 10 * 60 * 1000;
-exports.handler = handler;
 
-handler({}, {
-    done: function (error, result) {
-        console.log(error || result);
-    }
-})
-function handler(event, context) {
+exports.handler = function(event, context) {
+    console.log('Collecting Lambda container metrics');
     getLambdaContainerStatistics(function (error, lambdaStatistics) {
         if (error) {
             return context.done(error);
@@ -27,7 +23,7 @@ function handler(event, context) {
             context.done(null, 'Done');
         });
     });
-}
+};
 
 function getLambdaContainerStatistics(callback) {
     getAllLambdaLogGroups(null, null, function (error, logGroups) {
@@ -89,7 +85,7 @@ function getActiveLogStreamsForGroup(logGroup, nextToken, callback) {
         }
 
         var hasMore = !!logStreamResponse.nextToken;
-        var lastActiveTimeAllowed = Date.now() - LOG_STREAM_ACTIVE_TIME_OFFSET_MILLIS;
+        var lastActiveTimeAllowed = Date.now() - options.activeLambdaOffsetMillis;
         if (logStreamResponse.logStreams && logStreamResponse.logStreams.length > 0) {
             for (var i = 0; i < logStreamResponse.logStreams.length; i++) {
                 if (logStreamResponse.logStreams[i].lastEventTimestamp > lastActiveTimeAllowed) {

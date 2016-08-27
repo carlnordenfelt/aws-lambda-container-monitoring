@@ -1,4 +1,13 @@
 {
-    "name": "application-name",
-    "version": "0.0.1"
+    "name": "aws-lambda-container-monitor",
+    "author": "carl@bynordenfelt.se",
+    "version": "0.0.1",
+    "license": "MIT",
+    "scripts": {
+        "package": "zip -r source.zip src/* src/*/** node_modules/*/** > /dev/null 2>&1"
+    },
+    "dependencies": {
+        "async": "^2.0.1",
+        "aws-sdk": "^2.5.3"
+    }
 }
