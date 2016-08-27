@@ -14,9 +14,10 @@ Monitors number of active AWS Lambda containers and reports to CloudWatch as a c
     * Setup 1 minute scheduling
     
 ##Options
-var options = {
-    cloudWatchMetricNamespace: 'Lambda/ContainerMonitoring', // CloudWatch metric namespace
-    lambdaFunctionPrefix: '/aws/lambda/', // CloudWatch Logs filter prefix
-    metricName: 'ActiveContainers', // CloudWatch metric name
-    activeLambdaOffsetMillis: 10 * 60 * 1000 // Time in millis that a container is considerd active
-};
+
+    var options = {
+        cloudWatchMetricNamespace: 'Lambda/ContainerMonitoring', // CloudWatch metric namespace
+        lambdaFunctionPrefix: '/aws/lambda/', // CloudWatch Logs filter prefix
+        metricName: 'ActiveContainers', // CloudWatch metric name
+        activeLambdaOffsetMillis: 10 * 60 * 1000 // Time in millis that a container is considerd active
+    };
