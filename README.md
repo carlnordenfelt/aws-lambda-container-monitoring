@@ -8,7 +8,8 @@ Monitors number of active AWS Lambda containers and reports to CloudWatch as a c
 * Create Lambda function 
     * Runtime: nodejs4.3
     * Timeout: 300
-    * Memory 128
+    * Memory: 128
+    * Handler: src/index.handler
     * Attach newly created IAM Role
     * Upload source package
     * Setup 1 minute scheduling
