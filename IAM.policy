@@ -2,7 +2,7 @@
   "Version": "2012-10-17",
   "Statement": [
     {
-      "Sid": "Stmt1472289784647",
+      "Sid": "PutMetrics",
       "Action": [
         "cloudwatch:PutMetricData"
       ],
@@ -10,7 +10,17 @@
       "Resource": "*"
     },
     {
-      "Sid": "Stmt1472289812787",
+        "Sid": "WriteLogs",
+        "Action": [
+            "logs:CreateLogGroup",
+            "logs:CreateLogStream",
+            "logs:PutLogEvents"
+        ],
+        "Effect":"Allow",
+        "Resource": "arn:aws:logs:*:*:*"
+    },
+    {
+      "Sid": "GetStats",
       "Action": [
         "logs:DescribeLogGroups",
         "logs:DescribeLogStreams"
