@@ -20,5 +20,9 @@ In src/index.js:
     var options = {
         cloudWatchMetricNamespace: 'Lambda/ContainerMonitoring', // CloudWatch metric namespace
         metricName: 'ActiveContainers', // CloudWatch metric name
-        activeLambdaOffsetMillis: 10 * 60 * 1000 // Time in millis that a container is considerd active
+        activeLambdaOffsetMillis: 10 * 60 * 1000 // Time in millis that a container is considered active
     };
+
+##How it works
+Read more about hos it works here:
+https://bynordenfelt.se/articles/2016/08/lambda-container-monitoring/
